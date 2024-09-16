@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            // Display a welcome message for the calculator
+            // viser en velkomst-besked
             Console.WriteLine("Simple Calculator");
             Console.WriteLine("-----------------");
 
@@ -19,40 +19,46 @@
 
             // beder brugeren indtaste tal nr. 2 som skal +, -, * eller /
             Console.Write("Enter second number: ");
-            double num2 = Convert.ToDouble(Console.ReadLine()); // konventere tallet til en double
+            double num2 = Convert.ToDouble(Console.ReadLine()); // konvertere tallet til en double
 
             // angiver slutresultatet
             double result = 0;
             
-            //bruger en Switch-statement til at basere operationen, angivet af tegn angivet +, -, * eller /
-            switch (op)
+            //bruger en if-statement til at basere operationen = op, angivet af tegn angivet +, -, * eller /
+            if (op == '+')
             {
-                case '+':
-                    result = num1 + num2; // plusser tallene
-                    break;
-                case '-':
-                    result = num1 - num2; // fratrækker tallene
-                    break;
-                case '*':
-                    result = num1 * num2; // ganger tallene
-                    break;
-                case '/':
-                    // checker om nr. 2 tal angivet ikke er 0
-                    if (num2 != 0)
-                        result = num1 / num2; //ganger tallene
-                    else
+                result = num1 + num2;
+            }
+            else if (op == '-')
+            {
+                result = num1 - num2;
+            }
+            else if (op == '*')
+            {
+                result = num1 * num2;
+            }
+            else if (op == '/')
+            { 
+                if (num2 != 0)
+                    result = num1 / num2;
+                else
                         Console.WriteLine("Fejl: Du kan ikke dividere med 0.");
-                    break;
-                
+            }
+            else
+            {
                 //Reaktion hvis en af 4 operatorer ikke indtastes, andet end +, -, * eller /
-                default:
-                    //hvis forkert operator er angivet, andet end +, -, * eller /.
-                    Console.WriteLine("fejl: forkert tegn indtastet.");
+                //hvis forkert operator er angivet, andet end +, -, * eller /.
+                Console.WriteLine("fejl: forkert tegn indtastet.");
                     return; // luk programmet hvis forkert operator er angivet, andet end +, -, * eller /.
+            }
+            
+            if (op == '+' || op == '-' || op == '*' || (op == '/' && num2 != 0))
+            {
+                Console.WriteLine($"Resultat: {num1} {op} {num2} = {result}");
             }
 
             // viser slutresultatet.
-            Console.WriteLine($"Result: {num1} {op} {num2} = {result}");
+            Console.WriteLine($"Resultat: {num1} {op} {num2} = {result}");
         }
     }
 }
